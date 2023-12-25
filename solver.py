@@ -201,7 +201,7 @@ class Solver(object):
             I_no = np.transpose(I_no,(1,2,0))
             I_mask = (mask[t,:,:,:].detach().to('cpu').numpy()-1)*255
             I_mask = np.transpose(I_mask,(1,2,0))
-            I_vmask = (v_mask[t,:,:,:].detach().to('cpu').numpy()-1)*255
+            I_vmask = (v_mask[t,:,:,:].detach().to('cpu').numpy()-1)*50
             I_vmask = np.transpose(I_vmask,(1,2,0))
             I_res = (I2-I1)*5
             I5 = np.zeros((I1.shape[0],I1.shape[1]*6,I1.shape[2]))

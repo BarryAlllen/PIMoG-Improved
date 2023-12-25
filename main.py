@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     # Training configuration.
     parser.add_argument('--dataset', type=str, default='train_mask',choices=['train_mask','test_accuracy','test_embedding'])
-    parser.add_argument('--batch_size', type=int, default=16, help='mini-batch size')
+    parser.add_argument('--batch_size', type=int, default=32, help='mini-batch size')
     parser.add_argument('--lambda1',type=float, default=3, help='the weights of message loss')
     parser.add_argument('--lambda2',type=float, default=1, help='the weights of image loss')
     parser.add_argument('--lambda3',type=float, default=0.001, help='the weights of GAN loss')
@@ -52,8 +52,10 @@ if __name__ == '__main__':
     parser.add_argument('--mode', type=str, default='train_mask', choices=['train_mask','test_accuracy','test_embedding'])
 
     # Directories.
-    parser.add_argument('--image_dir', type=str, default='Dataset/COCOMask/train/train_class/') 
-    parser.add_argument('--image_val_dir', type=str, default='Dataset/COCOMask/val/val_class/')
+    # parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/train2017_16/')
+    # parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/val2017_3/')
+    parser.add_argument('--image_dir', type=str, default='/data/xujianhang/COCO_Mask/train8/')
+    parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/COCO_Mask/val2/')
     parser.add_argument('--log_dir', type=str, default='logs')
     parser.add_argument('--model_save_dir', type=str, default='models')
     parser.add_argument('--model_name',type=str,default='Encoder_Decoder_Model')
@@ -63,6 +65,9 @@ if __name__ == '__main__':
     # Step size.
     parser.add_argument('--log_step', type=int, default=40)
     parser.add_argument('--model_save_step', type=int, default=1)
+
+    # Username
+    parser.add_argument('--username', type=str)
 
     config = parser.parse_args()
     print(config)

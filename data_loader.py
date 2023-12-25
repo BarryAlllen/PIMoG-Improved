@@ -26,7 +26,7 @@ class ImageLoader_for_train_mask(data.Dataset):
 		mask = np.float32(mask)/255.0
 		mask = (mask.transpose((2,0,1))+1)*3
 
-		m = np.random.rand(30)
+		m = np.random.rand(15)
 		m[m>=0.5] = 1
 		m[m<0.5] = 0
 
