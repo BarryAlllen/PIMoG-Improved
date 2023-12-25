@@ -54,8 +54,8 @@ if __name__ == '__main__':
     # Directories.
     # parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/train2017_16/')
     # parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/val2017_3/')
-    parser.add_argument('--image_dir', type=str, default='/data/xujianhang/COCO_Mask/train64/')
-    parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/COCO_Mask/val10/')
+    parser.add_argument('--image_dir', type=str, default='/data/xujianhang/COCO_Mask/train/')
+    parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/COCO_Mask/val/')
     parser.add_argument('--log_dir', type=str, default='logs')
     parser.add_argument('--model_save_dir', type=str, default='models')
     parser.add_argument('--model_name',type=str,default='Encoder_Decoder_Model')
