@@ -153,15 +153,17 @@ class Solver(object):
         # Start training.
         print('Start training...')
         start_time = time.time()
-        txtfile = open(self.log_dir + '/' + self.dataset + '_' + self.distortion + '_' + current_time + '.txt', 'w', encoding="utf-8")
+        txtfile = open(self.log_dir + '/' + self.dataset + '_' + self.distortion + '_' + current_time + '.txt', 'w',
+                       encoding="utf-8")
         best_acc = 0.3
 
         tensorboard_logname = current_time
-        if not os.path.exists(self.log_dir + '/' + tensorboard_logname +'/'):
-            os.makedirs(self.log_dir + '/' + tensorboard_logname +'/')
-        tensor_board = SummaryWriter("logs/"+tensorboard_logname)
+        if not os.path.exists(self.log_dir + '/' + tensorboard_logname + '/'):
+            os.makedirs(self.log_dir + '/' + tensorboard_logname + '/')
+        tensor_board = SummaryWriter("logs/" + tensorboard_logname)
         batch_count = 1
-        show_per = 40
+        show_per = 1
+        total_corrcet = 0
 
         for epoch in tqdm(range(start_epoch, self.num_epoch), desc="Total"):
             running_loss = 0.0
@@ -275,9 +277,10 @@ class Solver(object):
             I5[:, I1.shape[1] * 4:I1.shape[1] * 5, :] = I_vmask
             I5[:, I1.shape[1] * 5:I1.shape[1] * 6, :] = I_res
             if not os.path.exists(self.result_dir + '/Image/images/' + current_time + '/'):
-                os.makedirs(self.result_dir + '/Image/images/'+ current_time + '/')
-            cv2.imwrite(self.result_dir + '/Image/images/'+ current_time + '/' + str(epoch) + '.png', I5)
-            imgI5 = cv2.imread(self.result_dir + '/Image/images/'+ current_time + '/' + str(epoch) + '.png', cv2.IMREAD_COLOR)
+                os.makedirs(self.result_dir + '/Image/images/' + current_time + '/')
+            cv2.imwrite(self.result_dir + '/Image/images/' + current_time + '/' + str(epoch) + '.png', I5)
+            imgI5 = cv2.imread(self.result_dir + '/Image/images/' + current_time + '/' + str(epoch) + '.png',
+                               cv2.IMREAD_COLOR)
             I5 = cv2.cvtColor(imgI5, cv2.COLOR_BGR2RGB)
             tensor_board.add_image('0 training image', I5, epoch + 1, dataformats="HWC")
             print('validation...')
@@ -294,8 +297,13 @@ class Solver(object):
                     decoded_rounded = Decoded_message.detach().cpu().numpy().round().clip(0, 1)
                     correct += np.sum(np.abs(decoded_rounded - m.detach().cpu().numpy()))
                     total += inputs.shape[0] * m.shape[1]
-            print("[epoch:%d] Correct Rate:%.3f" % (epoch + 1, (1 - correct / total) * 100) + '%')
-            print("[epoch:%d] Correct Rate:%.3f" % (epoch + 1, (1 - correct / total) * 100) + '%', file=txtfile)
+
+            correct = (1 - correct / total) * 100
+            total_corrcet += correct
+
+            print("[epoch:%d] Correct Rate:%.3f" % (epoch + 1, correct) + '%')
+            print("[epoch:%d] Correct Rate:%.3f" % (epoch + 1, correct) + '%', file=txtfile)
+            tensor_board.add_scalar('0 Correct Rate', correct, epoch + 1)
 
             if not os.path.exists(self.model_save_dir + '/' + self.distortion + '/' + current_time + '/'):
                 os.makedirs(self.model_save_dir + '/' + self.distortion + '/' + current_time + '/')
@@ -311,6 +319,7 @@ class Solver(object):
                     self.distortion) + '_' + current_time + '_best.pth'
                 torch.save(self.net.state_dict(), PATH_Encoder_Decoder_best)
             self.net.train()
+        print(f"Complete training!!! (Avg acc: {(total_corrcet / len(data_loader)):.2f}%)")
 
     def test_accuracy(self):
         # Set data loader.
