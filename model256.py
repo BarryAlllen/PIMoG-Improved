@@ -66,7 +66,11 @@ class Discriminator(nn.Module):
         self.linear = nn.Linear(num_channels,1)
     def forward(self,x):
         D = self.discriminator(x)
+        print(f"D shape: {D.shape}")
+        print(f"D: {D}")
         D.squeeze_(3).squeeze_(2)
+        print(f"D squeeze3 & squeeze2 shape: {D.shape}")
+        print(f"D: {D}")
         D = self.linear(D)
         return D
 
