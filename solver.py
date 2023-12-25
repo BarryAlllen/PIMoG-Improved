@@ -161,7 +161,7 @@ class Solver(object):
             os.makedirs(self.log_dir + '/' + tensorboard_logname +'/')
         tensor_board = SummaryWriter("logs/"+tensorboard_logname)
         batch_count = 1
-        show_per = 2
+        show_per = 40
 
         for epoch in tqdm(range(start_epoch, self.num_epoch), desc="Total"):
             running_loss = 0.0
