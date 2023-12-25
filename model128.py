@@ -66,7 +66,11 @@ class Discriminator(nn.Module):
         self.linear = nn.Linear(num_channels,1)
     def forward(self,x):
         D = self.discriminator(x)
+        print(f"D shape: {D.shape}")
+        print(f"D: {D}")
         D.squeeze_(3).squeeze_(2)
+        print(f"D squeeze3 & squeeze2 shape: {D.shape}")
+        print(f"D: {D}")
         D = self.linear(D)
         return D
 
@@ -107,9 +111,7 @@ class U_Net_Encoder_Diffusion(nn.Module):
         self.Maxpool = nn.MaxPool2d(kernel_size=2, stride=2)
         self.Globalpool = nn.MaxPool2d(kernel_size=4, stride=4)
 
-        self.Conv0 = DoubleConv(inchannel, 8)
-
-        self.Conv1 = DoubleConv(8, 16)
+        self.Conv1 = DoubleConv(inchannel, 16)
         self.Conv2 = DoubleConv(16, 32)
         self.Conv3 = DoubleConv(32, 64)
 
@@ -122,69 +124,57 @@ class U_Net_Encoder_Diffusion(nn.Module):
         self.Up2 = up_conv(32, 16)
         self.Conv9 = DoubleConv(16*2+64, 16)
 
-        self.Up1 = up_conv(16, 8)
-        self.Conv10 = DoubleConv(8*2+64, 8)
-
         self.Conv_1x1 = nn.Conv2d(16, outchannel, kernel_size=1, stride=1, padding=0)
-        self.Conv_1x1_8 = nn.Conv2d(8, outchannel, kernel_size=1, stride=1, padding=0)
-        self.linear = nn.Linear(30,256)
+        self.linear = nn.Linear(15,256)
         self.Conv_message = DoubleConv(1,64)
 
 
-    def forward(self, x, watermark):
-        x0 = self.Conv0(x)
+    def forward(self, x, watermark): # 3x128x128 1x15
+        x1 = self.Conv1(x) # 16x128x128
 
-        x1 = self.Maxpool(x0)
-        x1 = self.Conv1(x1)
+        x2 = self.Maxpool(x1) # 16x64x64
+        x2 = self.Conv2(x2) # 32x64x64
 
-        x2 = self.Maxpool(x1)
-        x2 = self.Conv2(x2)
+        x3 = self.Maxpool(x2) # 32x32x32
+        x3 = self.Conv3(x3) # 64x32x32
 
-        x3 = self.Maxpool(x2)
-        x3 = self.Conv3(x3)
+        x4 = self.Maxpool(x3) # 64x16x16
 
-        x4 = self.Maxpool(x3)
+        x6 = self.Globalpool(x4) # 64x4x4
+        x7 = x6.repeat(1,1,4,4) # 64x16x16`
+        print(f"x7 shape: {x7.shape}")
 
-        x6 = self.Globalpool(x4)
-        x7 = x6.repeat(1,1,4,4)
-        expanded_message = self.linear(watermark)
-        expanded_message = expanded_message.view(-1,1,16,16)
-        expanded_message = self.Conv_message(expanded_message)
-        x4 = torch.cat((x4, x7, expanded_message), dim=1)
+        expanded_message = self.linear(watermark) # 1x256
+        expanded_message = expanded_message.view(-1,1,16,16) # 1x16x16`
+        expanded_message = self.Conv_message(expanded_message) # 64x16x16
+        x4 = torch.cat((x4, x7, expanded_message), dim=1) # 192x16x16`
+        print(f"x4 shape: {x4.shape}")
 
-        d4 = self.Up4(x4)
-        expanded_message = self.linear(watermark)
-        expanded_message = expanded_message.view(-1,1,16,16)
-        expanded_message = torch.nn.functional.interpolate(expanded_message,size=(d4.shape[2],d4.shape[3]),mode='bilinear')
-        expanded_message = self.Conv_message(expanded_message)
-        d4 = torch.cat((x3, d4, expanded_message), dim=1)
-        d4 = self.Conv7(d4)
+        d4 = self.Up4(x4) # 64x32x32
+        expanded_message = self.linear(watermark) # 1x256
+        expanded_message = expanded_message.view(-1,1,16,16) # 1x16x16`
+        expanded_message = torch.nn.functional.interpolate(expanded_message,size=(d4.shape[2],d4.shape[3]),mode='bilinear') # 1x32x32`
+        expanded_message = self.Conv_message(expanded_message) # 64x32x32
+        d4 = torch.cat((x3, d4, expanded_message), dim=1) # 192x32x32`
+        d4 = self.Conv7(d4) # 64x32x32
 
-        d3 = self.Up3(d4)
-        expanded_message = self.linear(watermark)
-        expanded_message = expanded_message.view(-1,1,16,16)
-        expanded_message = torch.nn.functional.interpolate(expanded_message,size=(d3.shape[2],d3.shape[3]),mode='bilinear')
-        expanded_message = self.Conv_message(expanded_message)
-        d3 = torch.cat((x2, d3, expanded_message), dim=1)
-        d3 = self.Conv8(d3)
+        d3 = self.Up3(d4) # 32x64x64
+        expanded_message = self.linear(watermark) # 1x256
+        expanded_message = expanded_message.view(-1,1,16,16) # 1x16x16`
+        expanded_message = torch.nn.functional.interpolate(expanded_message,size=(d3.shape[2],d3.shape[3]),mode='bilinear') # 1x64x64`
+        expanded_message = self.Conv_message(expanded_message) # 64x64x64
+        d3 = torch.cat((x2, d3, expanded_message), dim=1) # 128x64x64`
+        d3 = self.Conv8(d3) # 32x64x64
 
-        d2 = self.Up2(d3)
-        expanded_message = self.linear(watermark)
-        expanded_message = expanded_message.view(-1,1,16,16)
-        expanded_message = torch.nn.functional.interpolate(expanded_message,size=(d2.shape[2],d2.shape[3]),mode='bilinear')
-        expanded_message = self.Conv_message(expanded_message)
-        d2 = torch.cat((x1, d2, expanded_message), dim=1)
-        d2 = self.Conv9(d2)
+        d2 = self.Up2(d3) # 16x128x128
+        expanded_message = self.linear(watermark) # 1x256
+        expanded_message = expanded_message.view(-1,1,16,16) # 1x16x16`
+        expanded_message = torch.nn.functional.interpolate(expanded_message,size=(d2.shape[2],d2.shape[3]),mode='bilinear') # 1x128x128`
+        expanded_message = self.Conv_message(expanded_message) # 64x128x128
+        d2 = torch.cat((x1, d2, expanded_message), dim=1) # 96x128x128`
+        d2 = self.Conv9(d2) # 16x128x128
 
-        d1 = self.Up1(d2)
-        expanded_message = self.linear(watermark)
-        expanded_message = expanded_message.view(-1,1,16,16)
-        expanded_message = torch.nn.functional.interpolate(expanded_message,size=(d1.shape[2],d1.shape[3]),mode='bilinear')
-        expanded_message = self.Conv_message(expanded_message)
-        d1 = torch.cat((x0, d1, expanded_message), dim=1)
-        d1 = self.Conv10(d1)
-
-        out = self.Conv_1x1_8(d1)
+        out = self.Conv_1x1(d2) # 3x128x128
 
         return out
 
@@ -195,19 +185,28 @@ class Extractor(nn.Module):
         self.layer2 = nn.Sequential(ResidualBlock(64,64,1), ResidualBlock(64,64,2))
         self.layer3 = nn.Sequential(ResidualBlock(64,64,1), ResidualBlock(64,64,2))
         self.layer4 = nn.Sequential(ResidualBlock(64,64,1), ResidualBlock(64,64,2))
-        self.layer5 = nn.Conv2d(64,1,kernel_size=1,stride=1,padding=0,bias=False)
-        self.linear = nn.Linear(256,30)
+        self.layer5 = nn.Conv2d(64,1,kernel_size=1,stride=1,padding=0,bias=False) # 1x1 conv
+        self.linear = nn.Linear(256,15)
     def forward(self, x):
-        out = self.layer1(x)
-        out = self.layer2(out)
-        out = self.layer2(out)
-        out = self.layer3(out)
-        out = self.layer4(out)
-        out = self.layer5(out)
+        out = self.layer1(x) # 64x128x128
+        out = self.layer2(out) # 64x64x64
+        out = self.layer3(out) # 64x32x32
+        out = self.layer4(out) # 64x16x16
+        out = self.layer5(out) # 1x16x16
+        # print(f"out5 shape: {out.shape}")
+        # print(f"out5: {out}")
         out.squeeze_(1)
+        # print(f"out.squeeze_(1) shape: {out.shape}")
+        # print(f"out.squeeze_(1): {out}")
         out = out.view(-1,1,256)
+        # print(f"out.view(-1,1,256) shape: {out.shape}")
+        # print(f"out.view(-1,1,256): {out}")
         out = self.linear(out)
+        # print(f"linear(out) shape: {out.shape}")
+        # print(f"linear(out): {out}")
         out.squeeze_(1)
+        # print(f"out.squeeze_(1) shape: {out.shape}")
+        # print(f"out.squeeze_(1): {out}")
         return out
 
 		
@@ -216,12 +215,12 @@ class Decoder(nn.Module):
         super(Decoder,self).__init__()
         self.extractor = Extractor()
         self.layer1 = nn.Sequential(
-            SingleConv(3,64,1),
-            SingleConv(64,64,1),
-            SingleConv(64,64,1),
-            ResidualBlock(64,64,1),
-            ResidualBlock(64,64,1),
-            ResidualBlock(64,64,1),
+            SingleConv(3,64,1), # 64x128x128
+            SingleConv(64,64,1), # 64x128x128
+            SingleConv(64,64,1), # 64x128x128
+            ResidualBlock(64,64,1), # 64x128x128
+            ResidualBlock(64,64,1), # 64x128x128
+            ResidualBlock(64,64,1), # 64x128x128
             )
 
     def forward(self, x):

@@ -1,0 +1,6 @@
+matplotlib
+opencv-python
+tensorboard
+tqdm
+scipy
+kornia
