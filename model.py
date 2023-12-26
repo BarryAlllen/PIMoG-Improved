@@ -121,7 +121,7 @@ class U_Net_Encoder_Diffusion(nn.Module):
         self.Conv9 = DoubleConv(16*2+64, 16)
 
         self.Conv_1x1 = nn.Conv2d(16, outchannel, kernel_size=1, stride=1, padding=0)
-        self.linear = nn.Linear(15,256)
+        self.linear = nn.Linear(30,256) #
         self.Conv_message = DoubleConv(1,64)
 
 
@@ -179,7 +179,7 @@ class Extractor(nn.Module):
         self.layer3 = nn.Sequential(ResidualBlock(64,64,1), ResidualBlock(64,64,2))
         self.layer4 = nn.Sequential(ResidualBlock(64,64,1), ResidualBlock(64,64,2))
         self.layer5 = nn.Conv2d(64,1,kernel_size=1,stride=1,padding=0,bias=False)
-        self.linear = nn.Linear(256,15)
+        self.linear = nn.Linear(256,30) #
     def forward(self, x):
         out = self.layer1(x)
         out = self.layer2(out)

@@ -1,6 +1,8 @@
 matplotlib
-opencv-python
+opencv-python-headless
 tensorboard
 tqdm
 scipy
 kornia
+pillow
+torchinfo

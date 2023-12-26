@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # Training configuration.
     parser.add_argument('--dataset', type=str, default='train_mask',choices=['train_mask','test_accuracy','test_embedding'])
     parser.add_argument('--batch_size', type=int, default=32, help='mini-batch size')
-    parser.add_argument('--lambda1',type=float, default=3, help='the weights of message loss')
+    parser.add_argument('--lambda1',type=float, default=10, help='the weights of message loss')
     parser.add_argument('--lambda2',type=float, default=1, help='the weights of image loss')
     parser.add_argument('--lambda3',type=float, default=0.001, help='the weights of GAN loss')
     parser.add_argument('--num_epoch', type=int, default=100, help='number of total epochs')
@@ -52,10 +52,20 @@ if __name__ == '__main__':
     parser.add_argument('--mode', type=str, default='train_mask', choices=['train_mask','test_accuracy','test_embedding'])
 
     # Directories.
-    # parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/train2017_16/')
-    # parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/val2017_3/')
-    parser.add_argument('--image_dir', type=str, default='/data/xujianhang/COCO_Mask/train/')
-    parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/COCO_Mask/val/')
+    # 78docker
+    # parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/train2017_10000/')
+    # parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/val2017_1000/')
+    parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/edgemask/train/')
+    parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/edgemask/val/')
+    # parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/train2017_64/')
+    # parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/val2017_10/')
+
+    # 97docker
+    # parser.add_argument('--image_dir', type=str, default='/data/coco/train2017_64/')
+    # parser.add_argument('--image_val_dir', type=str, default='/data/coco/val2017_10/')
+    # parser.add_argument('--image_dir', type=str, default='/data/coco/edgemask/train/')
+    # parser.add_argument('--image_val_dir', type=str, default='/data/coco/edgemask/val/')
+
     parser.add_argument('--log_dir', type=str, default='logs')
     parser.add_argument('--model_save_dir', type=str, default='models')
     parser.add_argument('--model_name',type=str,default='Encoder_Decoder_Model')

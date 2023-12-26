@@ -162,9 +162,10 @@ class Solver(object):
             os.makedirs(self.log_dir + '/' + tensorboard_logname + '/')
         tensor_board = SummaryWriter("logs/" + tensorboard_logname)
         batch_count = 1
-        show_per = 40
+        show_per = 1
         total_corrcet = 0
 
+        os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:256"
         for epoch in tqdm(range(start_epoch, self.num_epoch), desc="Total"):
             running_loss = 0.0
             message_losses = 0.0
@@ -173,7 +174,9 @@ class Solver(object):
             d_losses = 0.0
 
             total_batch_time = 0
-
+            # if hasattr(torch.cuda, 'empty_cache'):
+            #     torch.cuda.empty_cache()
+            os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:129"
             for i, (data, m, v_mask) in enumerate(data_loader):
                 start_batch_time = timer()
 
@@ -182,6 +185,8 @@ class Solver(object):
                 inputs.requires_grad = True
                 Encoded_image, Noised_image, Decoded_message = self.net(inputs, m)
                 loss_de = criterion_MSE(Decoded_message, m)
+                if hasattr(torch.cuda, 'empty_cache'):
+                    torch.cuda.empty_cache()
                 inputgrad = torch.autograd.grad(loss_de, inputs, create_graph=True)[0]
                 mask = torch.zeros(inputgrad.shape).to(self.device)
                 for ii in range(inputgrad.shape[0]):
@@ -209,8 +214,12 @@ class Solver(object):
                 g_loss = criterion(g_decoded, g_label_decoded)
 
                 loss_message = criterion_MSE(Decoded_message, m)
-                loss_denoise = criterion_MSE(Encoded_image * mask.float(), inputs * mask.float()) * 0.5 + criterion_MSE(
-                    Encoded_image * v_mask.float(), inputs * v_mask.float()) * 2
+                loss_denoise = criterion_MSE(Encoded_image * mask.float(), inputs * mask.float()) * 0.5 + criterion_MSE(Encoded_image * v_mask.float(), inputs * v_mask.float()) * 2
+
+                """
+                lambda1 = 3  lambda2 = 1  lambda3 = 0.001
+                """
+
                 loss = loss_message * self.lambda1 + loss_denoise * self.lambda2 + g_loss * self.lambda3
                 self.net_optimizer.zero_grad()
                 loss.backward()
