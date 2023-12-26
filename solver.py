@@ -162,7 +162,7 @@ class Solver(object):
             os.makedirs(self.log_dir + '/' + tensorboard_logname + '/')
         tensor_board = SummaryWriter("logs/" + tensorboard_logname)
         batch_count = 1
-        show_per = 40
+        show_per = self.log_step
         total_corrcet = 0
 
         total_running_loss = 0.0
@@ -348,7 +348,7 @@ class Solver(object):
 
             correct = (1 - correct / total) * 100.0
 
-            if correct < 98.0:
+            if correct < 97.0:
                 self.lambda1 = 10
                 self.lambda2 = 1
                 print("[Note] Correct rate too low, change ==> lambda1:10, lambda2:1")
