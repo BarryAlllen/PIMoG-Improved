@@ -162,8 +162,16 @@ class Solver(object):
             os.makedirs(self.log_dir + '/' + tensorboard_logname + '/')
         tensor_board = SummaryWriter("logs/" + tensorboard_logname)
         batch_count = 1
-        show_per = 1
+        show_per = 40
         total_corrcet = 0
+
+        total_running_loss = 0.0
+        total_message_losses = 0.0
+        total_denoise_losses = 0.0
+        total_g_losses = 0.0
+        total_d_losses = 0.0
+
+        is_change_lambda = False
 
         os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:256"
         for epoch in tqdm(range(start_epoch, self.num_epoch), desc="Total"):
@@ -220,6 +228,13 @@ class Solver(object):
                 lambda1 = 3  lambda2 = 1  lambda3 = 0.001
                 """
 
+                if is_change_lambda == False:
+                    if epoch > 5:
+                        self.lambda1 = 1
+                        self.lambda2 = 10
+                        is_change_lambda = True
+
+
                 loss = loss_message * self.lambda1 + loss_denoise * self.lambda2 + g_loss * self.lambda3
                 self.net_optimizer.zero_grad()
                 loss.backward()
@@ -231,6 +246,12 @@ class Solver(object):
                 denoise_losses += loss_denoise.item()
                 g_losses += g_loss.item()
                 d_losses += d_loss.item()
+
+                total_running_loss = running_loss
+                total_message_losses = message_losses
+                total_denoise_losses = denoise_losses
+                total_g_losses = g_losses
+                total_d_losses = d_losses
 
                 end_batch_time = timer()
                 total_batch_time += (end_batch_time - start_batch_time)
@@ -252,11 +273,11 @@ class Solver(object):
                         message_losses, denoise_losses, g_losses, d_losses, total_batch_time), file=txtfile)
                     total_batch_time = 0
 
-                    tensor_board.add_scalar('1 running loss', running_loss, batch_count)
-                    tensor_board.add_scalar('2 message loss', message_losses, batch_count)
-                    tensor_board.add_scalar('3 denoise loss', denoise_losses, batch_count)
-                    tensor_board.add_scalar('4 d loss', g_losses, batch_count)
-                    tensor_board.add_scalar('5 g loss', d_losses, batch_count)
+                    tensor_board.add_scalars('1 running loss', {'batch': running_loss}, batch_count)
+                    tensor_board.add_scalars('2 message loss', {'batch': message_losses}, batch_count)
+                    tensor_board.add_scalars('3 denoise loss', {'batch': denoise_losses}, batch_count)
+                    tensor_board.add_scalars('4 d loss', {'batch': g_losses}, batch_count)
+                    tensor_board.add_scalars('5 g loss', {'batch': d_losses}, batch_count)
 
                     running_loss = 0.0
                     message_losses = 0.0
@@ -264,6 +285,24 @@ class Solver(object):
                     g_losses = 0.0
                     d_losses = 0.0
                 batch_count += 1
+
+            total_running_loss = total_running_loss / len(data_loader)
+            total_message_losses = total_message_losses / len(data_loader)
+            total_denoise_losses = total_denoise_losses / len(data_loader)
+            total_g_losses = total_g_losses / len(data_loader)
+            total_d_losses = total_d_losses / len(data_loader)
+
+            tensor_board.add_scalars('1 running loss', {'epoch': total_running_loss}, batch_count)
+            tensor_board.add_scalars('2 message loss', {'epoch': total_message_losses}, batch_count)
+            tensor_board.add_scalars('3 denoise loss', {'epoch': total_denoise_losses}, batch_count)
+            tensor_board.add_scalars('4 d loss', {'epoch': total_g_losses}, batch_count)
+            tensor_board.add_scalars('5 g loss', {'epoch': total_d_losses}, batch_count)
+
+            total_running_loss = 0.0
+            total_message_losses = 0.0
+            total_denoise_losses = 0.0
+            total_g_losses = 0.0
+            total_d_losses = 0.0
 
             self.net.eval()
             t = np.random.randint(inputs.shape[0])
