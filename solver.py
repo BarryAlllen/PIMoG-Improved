@@ -171,7 +171,7 @@ class Solver(object):
         total_g_losses = 0.0
         total_d_losses = 0.0
 
-        is_change_lambda = False
+        # is_change_lambda = False
 
         os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:256"
         for epoch in tqdm(range(start_epoch, self.num_epoch), desc="Total"):
@@ -225,14 +225,14 @@ class Solver(object):
                 loss_denoise = criterion_MSE(Encoded_image * mask.float(), inputs * mask.float()) * 0.5 + criterion_MSE(Encoded_image * v_mask.float(), inputs * v_mask.float()) * 2
 
                 """
-                lambda1 = 3  lambda2 = 1  lambda3 = 0.001
+                lambda1 = 10  lambda2 = 1  lambda3 = 0.001
                 """
 
-                if is_change_lambda == False:
-                    if epoch > 5:
-                        self.lambda1 = 1
-                        self.lambda2 = 10
-                        is_change_lambda = True
+                # if is_change_lambda == False:
+                #     if epoch > 5:
+                #         self.lambda1 = 1
+                #         self.lambda2 = 10
+                #         is_change_lambda = True
 
 
                 loss = loss_message * self.lambda1 + loss_denoise * self.lambda2 + g_loss * self.lambda3
@@ -247,11 +247,11 @@ class Solver(object):
                 g_losses += g_loss.item()
                 d_losses += d_loss.item()
 
-                total_running_loss = running_loss
-                total_message_losses = message_losses
-                total_denoise_losses = denoise_losses
-                total_g_losses = g_losses
-                total_d_losses = d_losses
+                total_running_loss += loss.item()
+                total_message_losses += loss_message.item()
+                total_denoise_losses += loss_denoise.item()
+                total_g_losses += g_loss.item()
+                total_d_losses += d_loss.item()
 
                 end_batch_time = timer()
                 total_batch_time += (end_batch_time - start_batch_time)
@@ -334,8 +334,8 @@ class Solver(object):
             print('validation...')
             print('validation...', file=txtfile)
 
-            correct = 0
-            total = 0
+            correct = 0.0
+            total = 0.0
 
             with torch.inference_mode():
                 for i, (data, m, v_mask) in enumerate(data_loader_test):
@@ -346,7 +346,17 @@ class Solver(object):
                     correct += np.sum(np.abs(decoded_rounded - m.detach().cpu().numpy()))
                     total += inputs.shape[0] * m.shape[1]
 
-            correct = (1 - correct / total) * 100
+            correct = (1 - correct / total) * 100.0
+
+            if correct < 98.0:
+                self.lambda1 = 10
+                self.lambda2 = 1
+                print("[Note] Correct rate too low, change ==> lambda1:10, lambda2:1")
+            else:
+                self.lambda1 = 1
+                self.lambda2 = 10
+                print("[Note] Correct rate enough, change ==> lambda1:1, lambda2:10")
+
             total_corrcet += correct
 
             print("[epoch:%d] Correct Rate:%.3f" % (epoch + 1, correct) + '%')
@@ -361,10 +371,11 @@ class Solver(object):
             if epoch % (self.model_save_step) == (self.model_save_step - 1):
                 torch.save(self.net.state_dict(), PATH_Encoder_Decoder)
 
-            if 1 - correct / total >= best_acc:
-                best_acc = 1 - correct / total
+            # if 1 - correct / total >= best_acc:
+            if correct >= 98.0:
+                # best_acc = 1 - correct / total
                 PATH_Encoder_Decoder_best = self.model_save_dir + '/' + self.model_name + '_mask_' + str(
-                    self.distortion) + '_' + current_time + '_best.pth'
+                    self.distortion) + '_' + current_time +'_best'+'_'+ str(correct)+'.pth'
                 torch.save(self.net.state_dict(), PATH_Encoder_Decoder_best)
             self.net.train()
         print(f"Complete training!!! (Avg acc: {(total_corrcet / len(data_loader)):.2f}%)")
