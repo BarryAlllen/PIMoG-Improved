@@ -47,7 +47,7 @@ def main(config):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--num', type=int, default=2)
-    parser.add_argument('--input', type=str, default='/data/xujianhang/datasets/coco/train2017_64')
-    parser.add_argument('--output', type=str, default='/data/xujianhang/datasets/coco/train2017_2')
+    parser.add_argument('--input', type=str, default='/data/datasets/coco/train2017_64')
+    parser.add_argument('--output', type=str, default='/data/datasets/coco/train2017_2')
     config = parser.parse_args()
     main(config)

@@ -52,19 +52,12 @@ if __name__ == '__main__':
     parser.add_argument('--mode', type=str, default='train_mask', choices=['train_mask','test_accuracy','test_embedding'])
 
     # Directories.
-    # 78docker
-    # parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/train2017_10000/')
-    # parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/val2017_1000/')
-    parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/edgemask/train/')
-    parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/edgemask/val/')
-    # parser.add_argument('--image_dir', type=str, default='/data/xujianhang/coco/train2017_64/')
-    # parser.add_argument('--image_val_dir', type=str, default='/data/xujianhang/coco/val2017_10/')
-
-    # 97docker
-    # parser.add_argument('--image_dir', type=str, default='/data/coco/train2017_64/')
-    # parser.add_argument('--image_val_dir', type=str, default='/data/coco/val2017_10/')
-    # parser.add_argument('--image_dir', type=str, default='/data/coco/edgemask/train/')
-    # parser.add_argument('--image_val_dir', type=str, default='/data/coco/edgemask/val/')
+    # parser.add_argument('--image_dir', type=str, default='/data/datasets/coco/train2017_10000/')
+    # parser.add_argument('--image_val_dir', type=str, default='/data/datasets/coco/val2017_1000/')
+    parser.add_argument('--image_dir', type=str, default='/data/datasets/coco/edgemask128/train/')
+    parser.add_argument('--image_val_dir', type=str, default='/data/datasets/coco/edgemask128/val/')
+    # parser.add_argument('--image_dir', type=str, default='/data/datasets/coco/train2017_64/')
+    # parser.add_argument('--image_val_dir', type=str, default='/data/datasets/coco/val2017_10/')
 
     parser.add_argument('--log_dir', type=str, default='logs')
     parser.add_argument('--model_save_dir', type=str, default='models')

@@ -344,14 +344,15 @@ class Solver(object):
             print("[epoch:%d] Correct Rate:%.3f" % (epoch + 1, correct) + '%', file=txtfile)
             tensor_board.add_scalar('0 Correct Rate', correct, epoch + 1)
 
-            if correct < 97.0:
-                self.lambda1 = 10
-                self.lambda2 = 1
-                print("[Note] Correct rate too low, change ==> lambda1: 10, lambda2: 1")
-            else:
-                self.lambda1 = 1
-                self.lambda2 = 10
-                print("[Note] Correct rate enough, change ==> lambda1: 1, lambda2: 10")
+            if (epoch + 1) % 5 == 0:
+                if correct < 97.0:
+                    self.lambda1 = 10
+                    self.lambda2 = 1
+                    print("[Note] Correct rate < 97%, change ==> lambda1: 10, lambda2: 1")
+                else:
+                    self.lambda1 = 1
+                    self.lambda2 = 10
+                    print("[Note] Correct rate > 97%, change ==> lambda1: 1, lambda2: 10")
 
             if not os.path.exists(self.model_save_dir + '/' + self.distortion + '/' + current_time + '/'):
                 os.makedirs(self.model_save_dir + '/' + self.distortion + '/' + current_time + '/')

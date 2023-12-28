@@ -26,7 +26,7 @@ def get_edge_mask(model, args):
     nm = np.loadtxt(img_name_lst, dtype=str)
     nm = np.array([row[0] for row in nm])
 
-    save_dir = args.res_dir
+    save_dir = args.results
     if not os.path.exists(save_dir):
         os.mkdir(save_dir)
 
@@ -64,10 +64,10 @@ def main():
 
 def parse_args():
     parser = argparse.ArgumentParser('BDCN')
-    parser.add_argument('--imgroot', type=str, default='/data/xujianhang/datasets/coco/train2017_8/', help='The dataset\'s root')
+    parser.add_argument('--imgroot', type=str, default='/data/datasets/coco/train2017_8/', help='The dataset\'s root')
     parser.add_argument('--imglst', type=str, default='coco_datasets.txt', help='The dataset\'s list')
-    parser.add_argument( '--model', type=str, default='/data/xujianhang/model/bdcn/bdcn_pretrained_on_bsds500.pth', help='the model to test')
-    parser.add_argument('--res-dir', type=str, default='/data/xujianhang/datasets/coco/train2017_test', help='the dir to store result')
+    parser.add_argument( '--model', type=str, default='/data/model/bdcn/bdcn_pretrained_on_bsds500.pth', help='the model to test')
+    parser.add_argument('--results', type=str, default='/data/datasets/coco/train2017_test', help='the dir to store result')
     parser.add_argument('--imgsize', type=int, default=128, help='transform image size')
     return parser.parse_args()
 

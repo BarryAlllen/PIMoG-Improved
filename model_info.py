@@ -6,6 +6,8 @@ from torchinfo import summary
 from Noise_Layer import Identity, ScreenShooting
 import torch
 
+# show the info of model
+
 device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 # device = 'cpu'
 

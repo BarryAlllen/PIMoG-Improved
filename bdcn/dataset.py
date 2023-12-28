@@ -10,7 +10,7 @@ from torchvision import transforms
 
 def load_image_with_cache(path, cache=None, lock=None):
 	if cache is not None:
-		if not path in cache:        #if not cache.has_key(path):
+		if not path in cache:
 			with open(path, 'rb') as f:
 				cache[path] = f.read()
 		return Image.open(BytesIO(cache[path]))
@@ -34,7 +34,6 @@ class Data(data.Dataset):
 		])
 
 		lst_dir = os.path.join(self.root, self.lst)
-		# self.files = np.loadtxt(lst_dir, dtype=str)
 		with open(lst_dir, 'r') as f:
 			self.files = f.readlines()
 			self.files = [line.strip().split(' ') for line in self.files]

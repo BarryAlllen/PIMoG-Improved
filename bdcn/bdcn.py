@@ -28,7 +28,6 @@ def get_upsampling_weight(in_channels, out_channels, kernel_size):
 class MSBlock(nn.Module):
     def __init__(self, c_in, rate=4):
         super(MSBlock, self).__init__()
-        c_out = c_in
         self.rate = rate
 
         self.conv = nn.Conv2d(c_in, 32, 3, stride=1, padding=1)
