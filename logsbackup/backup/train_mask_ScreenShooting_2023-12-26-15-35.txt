@@ -1,0 +1,432 @@
+[epoch:1, batch:40] loss: 10.353
+message loss:0.308, denoise loss:7.268, gan_loss:0.787, d_loss:0.623 (102.03 s)
+[epoch:1, batch:80] loss: 4.309
+message loss:0.250, denoise loss:1.812, gan_loss:1.052, d_loss:0.450 (99.23 s)
+[epoch:1, batch:120] loss: 3.518
+message loss:0.220, denoise loss:1.314, gan_loss:1.367, d_loss:0.324 (103.36 s)
+[epoch:1, batch:160] loss: 2.737
+message loss:0.146, denoise loss:1.278, gan_loss:1.560, d_loss:0.262 (107.42 s)
+[epoch:1, batch:200] loss: 1.855
+message loss:0.076, denoise loss:1.096, gan_loss:1.796, d_loss:0.224 (103.17 s)
+[epoch:1, batch:240] loss: 1.424
+message loss:0.041, denoise loss:1.015, gan_loss:1.707, d_loss:0.277 (102.32 s)
+[epoch:1, batch:280] loss: 1.291
+message loss:0.030, denoise loss:0.994, gan_loss:1.486, d_loss:0.351 (99.78 s)
+validation...
+[epoch:1] Correct Rate:99.780%
+[epoch:2, batch:40] loss: 1.168
+message loss:0.023, denoise loss:0.938, gan_loss:1.572, d_loss:0.338 (101.73 s)
+[epoch:2, batch:80] loss: 0.984
+message loss:0.021, denoise loss:0.777, gan_loss:1.393, d_loss:0.342 (114.56 s)
+[epoch:2, batch:120] loss: 0.881
+message loss:0.019, denoise loss:0.690, gan_loss:1.484, d_loss:0.346 (99.47 s)
+[epoch:2, batch:160] loss: 0.926
+message loss:0.017, denoise loss:0.752, gan_loss:1.504, d_loss:0.325 (106.12 s)
+[epoch:2, batch:200] loss: 0.861
+message loss:0.017, denoise loss:0.693, gan_loss:1.666, d_loss:0.272 (93.93 s)
+[epoch:2, batch:240] loss: 0.848
+message loss:0.016, denoise loss:0.689, gan_loss:1.481, d_loss:0.341 (104.32 s)
+[epoch:2, batch:280] loss: 0.878
+message loss:0.015, denoise loss:0.725, gan_loss:1.551, d_loss:0.309 (97.80 s)
+validation...
+[epoch:2] Correct Rate:99.970%
+[epoch:3, batch:40] loss: 0.876
+message loss:0.014, denoise loss:0.733, gan_loss:1.584, d_loss:0.320 (112.89 s)
+[epoch:3, batch:80] loss: 0.752
+message loss:0.014, denoise loss:0.611, gan_loss:1.627, d_loss:0.267 (97.29 s)
+[epoch:3, batch:120] loss: 0.680
+message loss:0.013, denoise loss:0.546, gan_loss:1.673, d_loss:0.282 (103.60 s)
+[epoch:3, batch:160] loss: 0.755
+message loss:0.013, denoise loss:0.621, gan_loss:1.541, d_loss:0.327 (95.13 s)
+[epoch:3, batch:200] loss: 0.709
+message loss:0.013, denoise loss:0.581, gan_loss:1.584, d_loss:0.299 (108.85 s)
+[epoch:3, batch:240] loss: 0.707
+message loss:0.012, denoise loss:0.584, gan_loss:1.514, d_loss:0.369 (99.70 s)
+[epoch:3, batch:280] loss: 0.748
+message loss:0.012, denoise loss:0.631, gan_loss:1.572, d_loss:0.302 (98.33 s)
+validation...
+[epoch:3] Correct Rate:99.977%
+[epoch:4, batch:40] loss: 0.759
+message loss:0.011, denoise loss:0.646, gan_loss:1.519, d_loss:0.328 (97.84 s)
+[epoch:4, batch:80] loss: 0.656
+message loss:0.011, denoise loss:0.541, gan_loss:1.588, d_loss:0.280 (100.53 s)
+[epoch:4, batch:120] loss: 0.589
+message loss:0.011, denoise loss:0.480, gan_loss:1.617, d_loss:0.283 (107.80 s)
+[epoch:4, batch:160] loss: 0.658
+message loss:0.011, denoise loss:0.550, gan_loss:1.644, d_loss:0.283 (105.47 s)
+[epoch:4, batch:200] loss: 0.624
+message loss:0.010, denoise loss:0.520, gan_loss:1.843, d_loss:0.222 (115.61 s)
+[epoch:4, batch:240] loss: 0.631
+message loss:0.010, denoise loss:0.531, gan_loss:1.689, d_loss:0.278 (98.04 s)
+[epoch:4, batch:280] loss: 0.678
+message loss:0.010, denoise loss:0.577, gan_loss:1.823, d_loss:0.231 (118.73 s)
+validation...
+[epoch:4] Correct Rate:99.993%
+[epoch:5, batch:40] loss: 0.696
+message loss:0.010, denoise loss:0.598, gan_loss:1.800, d_loss:0.229 (100.23 s)
+[epoch:5, batch:80] loss: 0.591
+message loss:0.009, denoise loss:0.495, gan_loss:1.798, d_loss:0.227 (96.31 s)
+[epoch:5, batch:120] loss: 0.529
+message loss:0.009, denoise loss:0.437, gan_loss:1.760, d_loss:0.256 (102.34 s)
+[epoch:5, batch:160] loss: 0.604
+message loss:0.009, denoise loss:0.510, gan_loss:1.926, d_loss:0.208 (115.14 s)
+[epoch:5, batch:200] loss: 0.569
+message loss:0.009, denoise loss:0.482, gan_loss:2.024, d_loss:0.188 (100.51 s)
+[epoch:5, batch:240] loss: 0.585
+message loss:0.009, denoise loss:0.495, gan_loss:1.978, d_loss:0.195 (102.16 s)
+[epoch:5, batch:280] loss: 0.631
+message loss:0.009, denoise loss:0.542, gan_loss:2.157, d_loss:0.167 (98.47 s)
+validation...
+[epoch:5] Correct Rate:100.000%
+[epoch:6, batch:40] loss: 0.647
+message loss:0.008, denoise loss:0.560, gan_loss:2.196, d_loss:0.163 (96.65 s)
+[epoch:6, batch:80] loss: 0.555
+message loss:0.008, denoise loss:0.468, gan_loss:2.148, d_loss:0.167 (107.89 s)
+[epoch:6, batch:120] loss: 0.490
+message loss:0.008, denoise loss:0.409, gan_loss:2.127, d_loss:0.172 (101.03 s)
+[epoch:6, batch:160] loss: 0.562
+message loss:0.008, denoise loss:0.481, gan_loss:2.336, d_loss:0.148 (105.30 s)
+[epoch:6, batch:200] loss: 0.538
+message loss:0.008, denoise loss:0.458, gan_loss:2.528, d_loss:0.113 (100.60 s)
+[epoch:6, batch:240] loss: 0.549
+message loss:0.008, denoise loss:0.469, gan_loss:2.451, d_loss:0.128 (111.47 s)
+[epoch:6, batch:280] loss: 0.595
+message loss:0.008, denoise loss:0.516, gan_loss:2.709, d_loss:0.099 (107.60 s)
+validation...
+[epoch:6] Correct Rate:99.993%
+[epoch:7, batch:40] loss: 8.045
+message loss:0.128, denoise loss:0.792, gan_loss:1.373, d_loss:0.564 (90.92 s)
+[epoch:7, batch:80] loss: 5.356
+message loss:0.094, denoise loss:0.526, gan_loss:1.150, d_loss:0.500 (105.94 s)
+[epoch:7, batch:120] loss: 3.902
+message loss:0.079, denoise loss:0.382, gan_loss:1.302, d_loss:0.450 (93.68 s)
+[epoch:7, batch:160] loss: 4.488
+message loss:0.077, denoise loss:0.441, gan_loss:1.423, d_loss:0.393 (99.83 s)
+[epoch:7, batch:200] loss: 4.283
+message loss:0.076, denoise loss:0.421, gan_loss:1.429, d_loss:0.402 (95.59 s)
+[epoch:7, batch:240] loss: 4.233
+message loss:0.070, denoise loss:0.416, gan_loss:1.449, d_loss:0.390 (113.32 s)
+[epoch:7, batch:280] loss: 4.830
+message loss:0.070, denoise loss:0.476, gan_loss:1.748, d_loss:0.286 (95.78 s)
+validation...
+[epoch:7] Correct Rate:83.560%
+[epoch:8, batch:40] loss: 4.871
+message loss:0.068, denoise loss:0.480, gan_loss:1.946, d_loss:0.247 (102.95 s)
+[epoch:8, batch:80] loss: 4.042
+message loss:0.068, denoise loss:0.397, gan_loss:2.039, d_loss:0.198 (106.90 s)
+[epoch:8, batch:120] loss: 3.364
+message loss:0.064, denoise loss:0.330, gan_loss:2.064, d_loss:0.231 (99.50 s)
+[epoch:8, batch:160] loss: 4.001
+message loss:0.064, denoise loss:0.393, gan_loss:2.104, d_loss:0.203 (113.47 s)
+[epoch:8, batch:200] loss: 3.893
+message loss:0.064, denoise loss:0.383, gan_loss:2.264, d_loss:0.195 (100.48 s)
+[epoch:8, batch:240] loss: 3.913
+message loss:0.060, denoise loss:0.385, gan_loss:2.008, d_loss:0.249 (106.52 s)
+[epoch:8, batch:280] loss: 4.484
+message loss:0.062, denoise loss:0.442, gan_loss:2.396, d_loss:0.176 (105.93 s)
+validation...
+[epoch:8] Correct Rate:86.660%
+[epoch:9, batch:40] loss: 4.599
+message loss:0.060, denoise loss:0.454, gan_loss:2.592, d_loss:0.131 (114.27 s)
+[epoch:9, batch:80] loss: 3.771
+message loss:0.060, denoise loss:0.371, gan_loss:2.932, d_loss:0.088 (111.05 s)
+[epoch:9, batch:120] loss: 3.170
+message loss:0.057, denoise loss:0.311, gan_loss:2.813, d_loss:0.104 (107.87 s)
+[epoch:9, batch:160] loss: 3.814
+message loss:0.058, denoise loss:0.375, gan_loss:2.876, d_loss:0.095 (104.86 s)
+[epoch:9, batch:200] loss: 3.708
+message loss:0.057, denoise loss:0.365, gan_loss:3.034, d_loss:0.092 (104.69 s)
+[epoch:9, batch:240] loss: 3.763
+message loss:0.055, denoise loss:0.370, gan_loss:3.064, d_loss:0.091 (115.08 s)
+[epoch:9, batch:280] loss: 4.315
+message loss:0.056, denoise loss:0.426, gan_loss:3.445, d_loss:0.070 (106.34 s)
+validation...
+[epoch:9] Correct Rate:87.430%
+[epoch:10, batch:40] loss: 4.442
+message loss:0.055, denoise loss:0.438, gan_loss:3.580, d_loss:0.066 (109.43 s)
+[epoch:10, batch:80] loss: 3.605
+message loss:0.054, denoise loss:0.355, gan_loss:3.660, d_loss:0.047 (98.49 s)
+[epoch:10, batch:120] loss: 3.040
+message loss:0.052, denoise loss:0.298, gan_loss:3.241, d_loss:0.095 (113.26 s)
+[epoch:10, batch:160] loss: 3.674
+message loss:0.052, denoise loss:0.362, gan_loss:3.219, d_loss:0.094 (94.71 s)
+[epoch:10, batch:200] loss: 3.585
+message loss:0.053, denoise loss:0.353, gan_loss:3.684, d_loss:0.048 (106.15 s)
+[epoch:10, batch:240] loss: 3.645
+message loss:0.051, denoise loss:0.359, gan_loss:3.754, d_loss:0.046 (108.23 s)
+[epoch:10, batch:280] loss: 4.200
+message loss:0.051, denoise loss:0.415, gan_loss:4.086, d_loss:0.046 (109.48 s)
+validation...
+[epoch:10] Correct Rate:90.033%
+[epoch:11, batch:40] loss: 4.306
+message loss:0.052, denoise loss:0.425, gan_loss:3.883, d_loss:0.072 (103.94 s)
+[epoch:11, batch:80] loss: 3.481
+message loss:0.051, denoise loss:0.343, gan_loss:3.899, d_loss:0.042 (109.49 s)
+[epoch:11, batch:120] loss: 2.954
+message loss:0.049, denoise loss:0.290, gan_loss:3.477, d_loss:0.089 (94.85 s)
+[epoch:11, batch:160] loss: 3.563
+message loss:0.049, denoise loss:0.351, gan_loss:3.627, d_loss:0.067 (110.33 s)
+[epoch:11, batch:200] loss: 3.472
+message loss:0.049, denoise loss:0.342, gan_loss:4.204, d_loss:0.027 (110.33 s)
+[epoch:11, batch:240] loss: 3.559
+message loss:0.047, denoise loss:0.351, gan_loss:3.997, d_loss:0.046 (103.90 s)
+[epoch:11, batch:280] loss: 4.107
+message loss:0.047, denoise loss:0.406, gan_loss:4.126, d_loss:0.048 (104.25 s)
+validation...
+[epoch:11] Correct Rate:90.967%
+[epoch:12, batch:40] loss: 4.187
+message loss:0.047, denoise loss:0.414, gan_loss:4.288, d_loss:0.042 (101.60 s)
+[epoch:12, batch:80] loss: 3.395
+message loss:0.048, denoise loss:0.334, gan_loss:4.451, d_loss:0.030 (104.49 s)
+[epoch:12, batch:120] loss: 2.852
+message loss:0.046, denoise loss:0.280, gan_loss:3.784, d_loss:0.097 (99.48 s)
+[epoch:12, batch:160] loss: 3.512
+message loss:0.045, denoise loss:0.346, gan_loss:3.490, d_loss:0.081 (101.71 s)
+[epoch:12, batch:200] loss: 3.422
+message loss:0.046, denoise loss:0.337, gan_loss:4.386, d_loss:0.023 (112.60 s)
+[epoch:12, batch:240] loss: 3.468
+message loss:0.044, denoise loss:0.342, gan_loss:4.256, d_loss:0.043 (92.42 s)
+[epoch:12, batch:280] loss: 3.998
+message loss:0.044, denoise loss:0.395, gan_loss:4.718, d_loss:0.024 (93.08 s)
+validation...
+[epoch:12] Correct Rate:92.027%
+[epoch:13, batch:40] loss: 4.102
+message loss:0.045, denoise loss:0.405, gan_loss:4.301, d_loss:0.049 (95.06 s)
+[epoch:13, batch:80] loss: 3.318
+message loss:0.044, denoise loss:0.327, gan_loss:4.140, d_loss:0.037 (90.99 s)
+[epoch:13, batch:120] loss: 2.796
+message loss:0.043, denoise loss:0.275, gan_loss:3.773, d_loss:0.078 (107.50 s)
+[epoch:13, batch:160] loss: 3.461
+message loss:0.043, denoise loss:0.341, gan_loss:4.060, d_loss:0.048 (109.77 s)
+[epoch:13, batch:200] loss: 3.357
+message loss:0.043, denoise loss:0.331, gan_loss:4.652, d_loss:0.016 (100.99 s)
+[epoch:13, batch:240] loss: 3.408
+message loss:0.042, denoise loss:0.336, gan_loss:4.622, d_loss:0.030 (90.71 s)
+[epoch:13, batch:280] loss: 3.929
+message loss:0.041, denoise loss:0.388, gan_loss:5.041, d_loss:0.017 (104.78 s)
+validation...
+[epoch:13] Correct Rate:92.850%
+[epoch:14, batch:40] loss: 3.949
+message loss:0.043, denoise loss:0.390, gan_loss:4.678, d_loss:0.028 (98.45 s)
+[epoch:14, batch:80] loss: 3.184
+message loss:0.043, denoise loss:0.314, gan_loss:4.834, d_loss:0.022 (98.69 s)
+[epoch:14, batch:120] loss: 2.745
+message loss:0.042, denoise loss:0.270, gan_loss:4.486, d_loss:0.030 (110.46 s)
+[epoch:14, batch:160] loss: 3.340
+message loss:0.042, denoise loss:0.329, gan_loss:4.737, d_loss:0.023 (101.97 s)
+[epoch:14, batch:200] loss: 3.262
+message loss:0.042, denoise loss:0.322, gan_loss:5.176, d_loss:0.010 (101.15 s)
+[epoch:14, batch:240] loss: 3.317
+message loss:0.041, denoise loss:0.327, gan_loss:4.958, d_loss:0.020 (103.42 s)
+[epoch:14, batch:280] loss: 3.817
+message loss:0.041, denoise loss:0.377, gan_loss:5.346, d_loss:0.026 (109.55 s)
+validation...
+[epoch:14] Correct Rate:93.950%
+[epoch:15, batch:40] loss: 3.850
+message loss:0.042, denoise loss:0.380, gan_loss:5.056, d_loss:0.043 (89.76 s)
+[epoch:15, batch:80] loss: 3.054
+message loss:0.041, denoise loss:0.301, gan_loss:4.712, d_loss:0.033 (102.02 s)
+[epoch:15, batch:120] loss: 2.593
+message loss:0.041, denoise loss:0.255, gan_loss:4.690, d_loss:0.024 (110.33 s)
+[epoch:15, batch:160] loss: 3.252
+message loss:0.040, denoise loss:0.321, gan_loss:5.259, d_loss:0.015 (108.31 s)
+[epoch:15, batch:200] loss: 3.072
+message loss:0.040, denoise loss:0.303, gan_loss:5.554, d_loss:0.008 (88.87 s)
+[epoch:15, batch:240] loss: 3.201
+message loss:0.040, denoise loss:0.316, gan_loss:5.323, d_loss:0.014 (100.60 s)
+[epoch:15, batch:280] loss: 3.548
+message loss:0.040, denoise loss:0.350, gan_loss:5.758, d_loss:0.015 (107.98 s)
+validation...
+[epoch:15] Correct Rate:94.997%
+[epoch:16, batch:40] loss: 3.465
+message loss:0.041, denoise loss:0.342, gan_loss:5.534, d_loss:0.014 (98.79 s)
+[epoch:16, batch:80] loss: 2.715
+message loss:0.040, denoise loss:0.267, gan_loss:5.660, d_loss:0.009 (107.29 s)
+[epoch:16, batch:120] loss: 2.419
+message loss:0.040, denoise loss:0.237, gan_loss:5.566, d_loss:0.016 (100.89 s)
+[epoch:16, batch:160] loss: 2.975
+message loss:0.039, denoise loss:0.293, gan_loss:5.263, d_loss:0.026 (108.82 s)
+[epoch:16, batch:200] loss: 2.827
+message loss:0.039, denoise loss:0.278, gan_loss:5.816, d_loss:0.008 (91.49 s)
+[epoch:16, batch:240] loss: 3.087
+message loss:0.039, denoise loss:0.304, gan_loss:5.533, d_loss:0.023 (113.60 s)
+[epoch:16, batch:280] loss: 3.158
+message loss:0.039, denoise loss:0.311, gan_loss:5.511, d_loss:0.012 (109.45 s)
+validation...
+[epoch:16] Correct Rate:96.010%
+[epoch:17, batch:40] loss: 3.065
+message loss:0.041, denoise loss:0.302, gan_loss:5.675, d_loss:0.018 (103.97 s)
+[epoch:17, batch:80] loss: 2.528
+message loss:0.041, denoise loss:0.248, gan_loss:5.854, d_loss:0.009 (101.60 s)
+[epoch:17, batch:120] loss: 2.299
+message loss:0.039, denoise loss:0.225, gan_loss:5.170, d_loss:0.020 (103.12 s)
+[epoch:17, batch:160] loss: 2.757
+message loss:0.039, denoise loss:0.271, gan_loss:5.774, d_loss:0.011 (103.39 s)
+[epoch:17, batch:200] loss: 2.275
+message loss:0.038, denoise loss:0.223, gan_loss:6.192, d_loss:0.004 (101.00 s)
+[epoch:17, batch:240] loss: 2.475
+message loss:0.039, denoise loss:0.243, gan_loss:5.852, d_loss:0.016 (99.52 s)
+[epoch:17, batch:280] loss: 2.736
+message loss:0.038, denoise loss:0.269, gan_loss:6.101, d_loss:0.007 (105.69 s)
+validation...
+[epoch:17] Correct Rate:92.597%
+[epoch:18, batch:40] loss: 2.728
+message loss:0.040, denoise loss:0.268, gan_loss:5.888, d_loss:0.020 (95.33 s)
+[epoch:18, batch:80] loss: 2.211
+message loss:0.039, denoise loss:0.217, gan_loss:5.840, d_loss:0.023 (114.23 s)
+[epoch:18, batch:120] loss: 2.172
+message loss:0.039, denoise loss:0.213, gan_loss:5.805, d_loss:0.017 (107.30 s)
+[epoch:18, batch:160] loss: 2.444
+message loss:0.038, denoise loss:0.240, gan_loss:5.430, d_loss:0.025 (111.34 s)
+[epoch:18, batch:200] loss: 2.027
+message loss:0.038, denoise loss:0.198, gan_loss:6.156, d_loss:0.005 (99.42 s)
+[epoch:18, batch:240] loss: 2.312
+message loss:0.038, denoise loss:0.227, gan_loss:5.867, d_loss:0.016 (104.83 s)
+[epoch:18, batch:280] loss: 2.472
+message loss:0.038, denoise loss:0.243, gan_loss:5.597, d_loss:0.013 (98.66 s)
+validation...
+[epoch:18] Correct Rate:91.477%
+[epoch:19, batch:40] loss: 2.519
+message loss:0.039, denoise loss:0.247, gan_loss:5.687, d_loss:0.034 (99.80 s)
+[epoch:19, batch:80] loss: 2.154
+message loss:0.037, denoise loss:0.211, gan_loss:5.878, d_loss:0.012 (104.51 s)
+[epoch:19, batch:120] loss: 2.036
+message loss:0.037, denoise loss:0.199, gan_loss:5.841, d_loss:0.012 (99.23 s)
+[epoch:19, batch:160] loss: 2.217
+message loss:0.037, denoise loss:0.217, gan_loss:5.966, d_loss:0.013 (99.93 s)
+[epoch:19, batch:200] loss: 1.946
+message loss:0.037, denoise loss:0.190, gan_loss:6.474, d_loss:0.004 (102.55 s)
+[epoch:19, batch:240] loss: 1.974
+message loss:0.036, denoise loss:0.193, gan_loss:6.347, d_loss:0.007 (112.91 s)
+[epoch:19, batch:280] loss: 2.098
+message loss:0.037, denoise loss:0.205, gan_loss:6.733, d_loss:0.003 (102.50 s)
+validation...
+[epoch:19] Correct Rate:90.860%
+[epoch:20, batch:40] loss: 2.351
+message loss:0.037, denoise loss:0.231, gan_loss:6.088, d_loss:0.034 (103.49 s)
+[epoch:20, batch:80] loss: 1.942
+message loss:0.036, denoise loss:0.190, gan_loss:4.567, d_loss:0.051 (102.62 s)
+[epoch:20, batch:120] loss: 1.951
+message loss:0.037, denoise loss:0.191, gan_loss:4.725, d_loss:0.065 (96.35 s)
+[epoch:20, batch:160] loss: 1.970
+message loss:0.036, denoise loss:0.193, gan_loss:5.653, d_loss:0.020 (108.89 s)
+[epoch:20, batch:200] loss: 1.763
+message loss:0.036, denoise loss:0.172, gan_loss:6.143, d_loss:0.006 (106.01 s)
+[epoch:20, batch:240] loss: 1.810
+message loss:0.035, denoise loss:0.177, gan_loss:5.313, d_loss:0.077 (107.79 s)
+[epoch:20, batch:280] loss: 1.812
+message loss:0.035, denoise loss:0.177, gan_loss:4.732, d_loss:0.033 (95.24 s)
+validation...
+[epoch:20] Correct Rate:89.287%
+[epoch:21, batch:40] loss: 2.128
+message loss:0.037, denoise loss:0.208, gan_loss:6.021, d_loss:0.009 (104.66 s)
+[epoch:21, batch:80] loss: 1.833
+message loss:0.036, denoise loss:0.179, gan_loss:5.935, d_loss:0.028 (95.42 s)
+[epoch:21, batch:120] loss: 1.690
+message loss:0.036, denoise loss:0.165, gan_loss:5.520, d_loss:0.021 (89.92 s)
+[epoch:21, batch:160] loss: 1.926
+message loss:0.035, denoise loss:0.189, gan_loss:5.336, d_loss:0.040 (103.60 s)
+[epoch:21, batch:200] loss: 1.691
+message loss:0.035, denoise loss:0.165, gan_loss:5.800, d_loss:0.010 (108.38 s)
+[epoch:21, batch:240] loss: 1.668
+message loss:0.034, denoise loss:0.163, gan_loss:4.957, d_loss:0.062 (103.78 s)
+[epoch:21, batch:280] loss: 1.694
+message loss:0.035, denoise loss:0.165, gan_loss:5.064, d_loss:0.019 (101.72 s)
+validation...
+[epoch:21] Correct Rate:90.020%
+[epoch:22, batch:40] loss: 1.953
+message loss:0.036, denoise loss:0.191, gan_loss:5.890, d_loss:0.029 (96.32 s)
+[epoch:22, batch:80] loss: 1.644
+message loss:0.035, denoise loss:0.160, gan_loss:5.547, d_loss:0.042 (98.20 s)
+[epoch:22, batch:120] loss: 1.582
+message loss:0.034, denoise loss:0.154, gan_loss:5.986, d_loss:0.021 (93.10 s)
+[epoch:22, batch:160] loss: 1.684
+message loss:0.034, denoise loss:0.165, gan_loss:4.607, d_loss:0.080 (101.29 s)
+[epoch:22, batch:200] loss: 1.518
+message loss:0.034, denoise loss:0.148, gan_loss:5.146, d_loss:0.014 (95.65 s)
+[epoch:22, batch:240] loss: 1.523
+message loss:0.034, denoise loss:0.148, gan_loss:5.227, d_loss:0.033 (100.19 s)
+[epoch:22, batch:280] loss: 1.654
+message loss:0.034, denoise loss:0.161, gan_loss:6.149, d_loss:0.006 (95.40 s)
+validation...
+[epoch:22] Correct Rate:91.273%
+[epoch:23, batch:40] loss: 1.715
+message loss:0.035, denoise loss:0.167, gan_loss:5.859, d_loss:0.027 (104.30 s)
+[epoch:23, batch:80] loss: 1.459
+message loss:0.035, denoise loss:0.142, gan_loss:5.735, d_loss:0.023 (97.89 s)
+[epoch:23, batch:120] loss: 1.490
+message loss:0.034, denoise loss:0.145, gan_loss:5.846, d_loss:0.029 (111.43 s)
+[epoch:23, batch:160] loss: 1.491
+message loss:0.033, denoise loss:0.145, gan_loss:5.290, d_loss:0.062 (102.09 s)
+[epoch:23, batch:200] loss: 1.432
+message loss:0.033, denoise loss:0.139, gan_loss:5.975, d_loss:0.008 (102.80 s)
+[epoch:23, batch:240] loss: 1.397
+message loss:0.033, denoise loss:0.136, gan_loss:5.865, d_loss:0.010 (98.79 s)
+[epoch:23, batch:280] loss: 1.519
+message loss:0.034, denoise loss:0.148, gan_loss:6.043, d_loss:0.005 (107.02 s)
+validation...
+[epoch:23] Correct Rate:89.540%
+[epoch:24, batch:40] loss: 1.538
+message loss:0.034, denoise loss:0.150, gan_loss:6.011, d_loss:0.038 (98.62 s)
+[epoch:24, batch:80] loss: 1.376
+message loss:0.034, denoise loss:0.134, gan_loss:4.836, d_loss:0.073 (101.20 s)
+[epoch:24, batch:120] loss: 1.465
+message loss:0.033, denoise loss:0.143, gan_loss:5.512, d_loss:0.019 (99.33 s)
+[epoch:24, batch:160] loss: 1.409
+message loss:0.033, denoise loss:0.137, gan_loss:5.937, d_loss:0.016 (108.74 s)
+[epoch:24, batch:200] loss: 1.367
+message loss:0.033, denoise loss:0.133, gan_loss:6.058, d_loss:0.006 (102.76 s)
+[epoch:24, batch:240] loss: 1.318
+message loss:0.032, denoise loss:0.128, gan_loss:6.470, d_loss:0.005 (108.72 s)
+[epoch:24, batch:280] loss: 1.464
+message loss:0.033, denoise loss:0.142, gan_loss:6.297, d_loss:0.003 (107.28 s)
+validation...
+[epoch:24] Correct Rate:87.117%
+[epoch:25, batch:40] loss: 1.420
+message loss:0.034, denoise loss:0.138, gan_loss:5.769, d_loss:0.039 (93.98 s)
+[epoch:25, batch:80] loss: 1.342
+message loss:0.033, denoise loss:0.130, gan_loss:6.316, d_loss:0.047 (101.25 s)
+[epoch:25, batch:120] loss: 1.435
+message loss:0.033, denoise loss:0.140, gan_loss:6.026, d_loss:0.016 (101.95 s)
+[epoch:25, batch:160] loss: 1.339
+message loss:0.033, denoise loss:0.130, gan_loss:5.923, d_loss:0.039 (107.50 s)
+[epoch:25, batch:200] loss: 1.339
+message loss:0.032, denoise loss:0.130, gan_loss:5.966, d_loss:0.009 (106.34 s)
+[epoch:25, batch:240] loss: 1.236
+message loss:0.032, denoise loss:0.120, gan_loss:6.341, d_loss:0.008 (96.44 s)
+[epoch:25, batch:280] loss: 1.424
+message loss:0.032, denoise loss:0.139, gan_loss:6.547, d_loss:0.003 (107.09 s)
+validation...
+[epoch:25] Correct Rate:86.607%
+[epoch:26, batch:40] loss: 1.328
+message loss:0.032, denoise loss:0.129, gan_loss:6.332, d_loss:0.010 (110.18 s)
+[epoch:26, batch:80] loss: 1.257
+message loss:0.033, denoise loss:0.122, gan_loss:6.586, d_loss:0.004 (90.13 s)
+[epoch:26, batch:120] loss: 1.338
+message loss:0.033, denoise loss:0.130, gan_loss:5.791, d_loss:0.027 (112.80 s)
+[epoch:26, batch:160] loss: 1.273
+message loss:0.033, denoise loss:0.123, gan_loss:6.133, d_loss:0.013 (97.53 s)
+[epoch:26, batch:200] loss: 1.339
+message loss:0.032, denoise loss:0.130, gan_loss:6.760, d_loss:0.006 (95.62 s)
+[epoch:26, batch:240] loss: 1.182
+message loss:0.032, denoise loss:0.114, gan_loss:6.619, d_loss:0.005 (95.02 s)
+[epoch:26, batch:280] loss: 1.376
+message loss:0.033, denoise loss:0.134, gan_loss:7.002, d_loss:0.003 (91.10 s)
+validation...
+[epoch:26] Correct Rate:85.993%
+[epoch:27, batch:40] loss: 1.272
+message loss:0.032, denoise loss:0.123, gan_loss:6.624, d_loss:0.010 (98.52 s)
+[epoch:27, batch:80] loss: 1.238
+message loss:0.032, denoise loss:0.120, gan_loss:6.565, d_loss:0.024 (104.19 s)
+[epoch:27, batch:120] loss: 1.297
+message loss:0.031, denoise loss:0.126, gan_loss:5.442, d_loss:0.071 (113.09 s)
+[epoch:27, batch:160] loss: 1.236
+message loss:0.032, denoise loss:0.120, gan_loss:5.520, d_loss:0.038 (105.40 s)
+[epoch:27, batch:200] loss: 1.318
+message loss:0.031, denoise loss:0.128, gan_loss:5.770, d_loss:0.014 (92.31 s)
+[epoch:27, batch:240] loss: 1.136
+message loss:0.031, denoise loss:0.110, gan_loss:5.746, d_loss:0.020 (105.05 s)
+[epoch:27, batch:280] loss: 1.326
+message loss:0.032, denoise loss:0.129, gan_loss:6.652, d_loss:0.005 (103.08 s)
+validation...
+[epoch:27] Correct Rate:85.710%

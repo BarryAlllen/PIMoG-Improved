@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
 from Noise_Layer import Identity, ScreenShooting
+
+# 128x128 15bit
 
 class ConvBNRelu(nn.Module):
     def __init__(self, channels_in, channels_out, stride=1):
