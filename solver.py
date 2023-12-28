@@ -171,8 +171,6 @@ class Solver(object):
         total_g_losses = 0.0
         total_d_losses = 0.0
 
-        # is_change_lambda = False
-
         os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:256"
         for epoch in tqdm(range(start_epoch, self.num_epoch), desc="Total"):
             running_loss = 0.0
@@ -227,13 +225,6 @@ class Solver(object):
                 """
                 lambda1 = 10  lambda2 = 1  lambda3 = 0.001
                 """
-
-                # if is_change_lambda == False:
-                #     if epoch > 5:
-                #         self.lambda1 = 1
-                #         self.lambda2 = 10
-                #         is_change_lambda = True
-
 
                 loss = loss_message * self.lambda1 + loss_denoise * self.lambda2 + g_loss * self.lambda3
                 self.net_optimizer.zero_grad()
@@ -327,8 +318,7 @@ class Solver(object):
             if not os.path.exists(self.result_dir + '/Image/images/' + current_time + '/'):
                 os.makedirs(self.result_dir + '/Image/images/' + current_time + '/')
             cv2.imwrite(self.result_dir + '/Image/images/' + current_time + '/' + str(epoch) + '.png', I5)
-            imgI5 = cv2.imread(self.result_dir + '/Image/images/' + current_time + '/' + str(epoch) + '.png',
-                               cv2.IMREAD_COLOR)
+            imgI5 = cv2.imread(self.result_dir + '/Image/images/' + current_time + '/' + str(epoch) + '.png', cv2.IMREAD_COLOR)
             I5 = cv2.cvtColor(imgI5, cv2.COLOR_BGR2RGB)
             tensor_board.add_image('0 training image', I5, epoch + 1, dataformats="HWC")
             print('validation...')
@@ -348,25 +338,24 @@ class Solver(object):
 
             correct = (1 - correct / total) * 100.0
 
-            if correct < 97.0:
-                self.lambda1 = 10
-                self.lambda2 = 1
-                print("[Note] Correct rate too low, change ==> lambda1:10, lambda2:1")
-            else:
-                self.lambda1 = 1
-                self.lambda2 = 10
-                print("[Note] Correct rate enough, change ==> lambda1:1, lambda2:10")
-
             total_corrcet += correct
 
             print("[epoch:%d] Correct Rate:%.3f" % (epoch + 1, correct) + '%')
             print("[epoch:%d] Correct Rate:%.3f" % (epoch + 1, correct) + '%', file=txtfile)
             tensor_board.add_scalar('0 Correct Rate', correct, epoch + 1)
 
+            if correct < 97.0:
+                self.lambda1 = 10
+                self.lambda2 = 1
+                print("[Note] Correct rate too low, change ==> lambda1: 10, lambda2: 1")
+            else:
+                self.lambda1 = 1
+                self.lambda2 = 10
+                print("[Note] Correct rate enough, change ==> lambda1: 1, lambda2: 10")
+
             if not os.path.exists(self.model_save_dir + '/' + self.distortion + '/' + current_time + '/'):
                 os.makedirs(self.model_save_dir + '/' + self.distortion + '/' + current_time + '/')
-            PATH_Encoder_Decoder = self.model_save_dir + '/' + self.distortion + '/' + current_time + '/' + self.model_name + '_mask_' + str(
-                epoch) + '.pth'
+            PATH_Encoder_Decoder = self.model_save_dir + '/' + self.distortion + '/' + current_time + '/' + self.model_name + '_mask_' + str(epoch) + '.pth'
 
             if epoch % (self.model_save_step) == (self.model_save_step - 1):
                 torch.save(self.net.state_dict(), PATH_Encoder_Decoder)
@@ -374,13 +363,13 @@ class Solver(object):
             # if 1 - correct / total >= best_acc:
             if correct >= 98.0:
                 # best_acc = 1 - correct / total
-                PATH_Encoder_Decoder_best = self.model_save_dir + '/' + self.model_name + '_mask_' + str(
-                    self.distortion) + '_' + current_time +'_best'+'_'+ str(correct)+'.pth'
+                PATH_Encoder_Decoder_best = self.model_save_dir + '/' + self.model_name + '_mask_' + str(self.distortion) + '_' + current_time + '_' + str(epoch + 1) + '_best' + '_' + str(round(correct)) + '.pth'
                 torch.save(self.net.state_dict(), PATH_Encoder_Decoder_best)
             self.net.train()
-        print(f"Complete training!!! (Avg acc: {(total_corrcet / len(data_loader)):.2f}%)")
+        print(f"Complete training!!! (Avg acc: {(total_corrcet / (epoch + 1)):.2f}%)")
 
     def test_accuracy(self):
+        
         # Set data loader.
         data_loader_test = self.data_loader_test
 
