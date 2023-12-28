@@ -34,14 +34,14 @@ pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --e
 pip install -r requirement.txt
 ```
 
-## 2.COCO Datasets🐕
+## 2. COCO Datasets🐕
 ### 2.1 Select your data 
 If you download the dataset from the [COCO](https://cocodataset.org/#download) official website, you can choose 10000 as the training set and 1000 as the validation set.
 ```
 python /bdcn/select_image.py --num <number> --input <dir> --output <dir>
 ```
 ### 2.2 Make your own dataset
-The code will process this form of data (image with its edgemask):
+😁The code will process this form of data (image with its edgemask):
 ![demo](images/999999999999.jpg)
 
 So you should make your own dataset.(with [BDCN](https://arxiv.org/pdf/1902.10903.pdf))\
@@ -50,8 +50,31 @@ First, configure the path parameters in `bdcn/edge_mask.py`.(like the input and 
 ```
 python /bdcn/edge_mask.py --imgroot <input dir> --imglst <txtname> --model <BDCN model> --results <output dir> --imgsize <size>
 ```
-
 > 🙃Note: If you don't want to handle it yourself, you can actually download it I've processed.([here]() --waiting)
 
+## 3. Train🐎
+* Prepare your dataset
+* Set the directory location
+* Set the hyper parameters
+* Open your Tensoboard (or not)
+* Let's go training ! ! !
+```
+python main.py
 
+or
 
+python main.py --batch_size 32 --num_epoch 100 --image_dir <dir> --image_val_dir <dir>
+```
+
+## 4. Embed Watermark🐔
+You can set the parameter `is_random` of `prediction.get_msg()` to `False`, which can make the embedded data stable and convenient for verification. Otherwise, you can set it to `True` and randomly set the watermark parameter.
+```
+python prediction --mode encode --model <dir> --encode_img_path <dir> --encode_result_path <dir>
+```
+
+## 5. Extract Watermark from Image🐸
+You can choose whether to add noise to the image before extracting the watermark for better data extraction.(set `is_noise` to `True`)
+```
+python prediction --mode decode --model <dir> --decode_img_path <dir>
+```
+Then the watermark will be showed in the console.
