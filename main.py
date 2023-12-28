@@ -14,7 +14,13 @@ def main(config):
 
     # Data loader.
     Data_Loader = None
-    Data_Loader = get_loader(config.image_dir,config.image_size,config.batch_size,config.dataset,config.mode,config.num_workers,config.wmat_dir)
+    Data_Loader = get_loader(config.image_dir,
+                             config.image_size,
+                             config.batch_size,
+                             config.dataset,
+                             config.mode,
+                             config.num_workers,
+                             config.wmat_dir)
     Data_Loader_Test = get_loader(config.image_val_dir,config.image_size,config.batch_size,config.dataset,config.mode,config.num_workers,config.wmat_dir)
 	
     # Solver for training and testing PIMoG 
